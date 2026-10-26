@@ -1,0 +1,14 @@
+{
+  "name": "finalaudit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FinalAudit — real SEO and website audit with live crawling, on-page checks, security headers and PageSpeed Insights.",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "check": "node --check netlify/functions/audit.js && node --check public/js/audit-engine.js && node --check public/js/audit-ui.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO &amp; Website Audit — Northwind Store | FinalAudit</title>
+<meta name="description" content="FinalAudit — real SEO and website audit: scores, Core Web Vitals, prioritised findings and a 90-day action roadmap.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Cpath d='M6 18h5l3-8 4 13 3-7h5' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#overview">Skip to report</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<div class="app">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="sidebar" id="sidebar" aria-label="Report navigation">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 13h4l2.2-6 3.3 11 2.3-6H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <div class="brand-text">
+        <strong>FinalAudit</strong>
+        <span>Website audit suite</span>
+      </div>
+      <button class="icon-btn sidebar-close" id="closeMenu" aria-label="Close menu" type="button">
+        <span data-icon="x"></span>
+      </button>
+    </div>
+
+    <div class="side-label">Report sections</div>
+
+    <nav class="nav" id="nav">
+      <a class="nav-item is-active" href="#overview" data-section="overview">
+        <span class="nav-ico" data-icon="grid"></span>
+        <span class="nav-text">Overview</span>
+      </a>
+      <a class="nav-item" href="#issues" data-section="issues">
+        <span class="nav-ico" data-icon="alert"></span>
+        <span class="nav-text">Findings</span>
+        <span class="nav-badge" id="navIssueBadge">12</span>
+      </a>
+      <a class="nav-item" href="#performance" data-section="performance">
+        <span class="nav-ico" data-icon="zap"></span>
+        <span class="nav-text">Performance</span>
+      </a>
+      <a class="nav-item" href="#onpage" data-section="onpage">
+        <span class="nav-ico" data-icon="file"></span>
+        <span class="nav-text">On-page SEO</span>
+      </a>
+      <a class="nav-item" href="#technical" data-section="technical">
+        <span class="nav-ico" data-icon="sliders"></span>
+        <span class="nav-text">Technical</span>
+      </a>
+      <a class="nav-item" href="#content" data-section="content">
+        <span class="nav-ico" data-icon="pen"></span>
+        <span class="nav-text">Content</span>
+      </a>
+      <a class="nav-item" href="#authority" data-section="authority">
+        <span class="nav-ico" data-icon="link"></span>
+        <span class="nav-text">Authority</span>
+      </a>
+      <a class="nav-item" href="#roadmap" data-section="roadmap">
+        <span class="nav-ico" data-icon="map"></span>
+        <span class="nav-text">Roadmap</span>
+      </a>
+    </nav>
+
+    <div class="side-score">
+      <div class="side-score-top">
+        <span>Overall score</span>
+        <strong><span id="sideScore">74</span><small>/100</small></strong>
+      </div>
+      <div class="mini-bar"><span id="sideBar" style="width:74%"></span></div>
+      <p><span class="delta up" id="sideDelta">+6 pts</span> <span id="sideDeltaText">since last audit</span></p>
+    </div>
+
+    <div class="side-actions">
+      <button class="btn ghost small" type="button" data-print>
+        <span data-icon="printer"></span> Print
+      </button>
+      <button class="btn ghost small" type="button" data-export>
+        <span data-icon="download"></span> CSV
+      </button>
+    </div>
+
+    <div class="side-foot">
+      <span class="live-dot"></span>
+      <span><span id="sideMode">Final report</span> · <span id="sideDate">24 Oct 2026</span></span>
+    </div>
+  </aside>
+
+  <div class="backdrop" id="backdrop"></div>
+
+  <!-- ================= MAIN ================= -->
+  <div class="main">
+
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open report menu" aria-controls="sidebar" aria-expanded="false" type="button">
+        <span data-icon="menu"></span>
+      </button>
+      <div class="crumbs">
+        <span>Reports</span>
+        <span class="crumb-sep">/</span>
+        <strong id="crumbSite">Northwind Store</strong>
+      </div>
+      <div class="top-actions">
+        <span class="top-date" id="topDate">Audited 24 Oct 2026</span>
+        <button class="btn ghost" id="shareBtn" type="button">
+          <span data-icon="share"></span><span class="btn-lbl">Share</span>
+        </button>
+        <button class="btn ghost" type="button" data-export>
+          <span data-icon="download"></span><span class="btn-lbl">Export</span>
+        </button>
+        <button class="btn primary" type="button" data-print>
+          <span data-icon="printer"></span><span class="btn-lbl">Print / PDF</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="report">
+
+      <!-- ================= LIVE ANALYZER ================= -->
+      <section class="analyzer" id="analyzer" aria-labelledby="analyzerTitle">
+        <div class="analyzer-copy">
+          <span class="kicker">Live audit</span>
+          <h2 id="analyzerTitle">Audit any website</h2>
+          <p>Enter a public URL. FinalAudit crawls the page, runs 25+ SEO, content, mobile and security checks, then adds Lighthouse data.</p>
+        </div>
+        <form class="analyzer-form" id="auditForm" novalidate>
+          <label class="sr-only" for="auditUrl">Website URL</label>
+          <div class="analyzer-input">
+            <span data-icon="globe"></span>
+            <input id="auditUrl" name="url" type="text" inputmode="url" autocomplete="url" placeholder="https://example.com" spellcheck="false" required>
+          </div>
+          <button class="btn primary" id="auditBtn" type="submit">
+            <span data-icon="zap"></span> Run audit
+          </button>
+        </form>
+        <div class="analyzer-meta">
+          <span class="report-mode" id="reportMode"><i></i>Sample report</span>
+          <span class="analyzer-status" id="auditStatus" role="status" aria-live="polite">Demo data loaded — run a live audit to replace it.</span>
+        </div>
+      </section>
+
+      <!-- ================= HERO ================= -->
+      <section class="hero" id="overview" data-section="overview">
+        <div class="hero-glow" aria-hidden="true"></div>
+
+        <div class="hero-top">
+          <div class="hero-copy">
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              <span id="reportLabel">Final audit report</span>
+              <span class="eyebrow-sep"></span>
+              <span id="reportId">SEO-2026-1024-07</span>
+            </div>
+
+            <div class="hero-brand">
+              <span class="site-avatar" id="siteAvatar">NW</span>
+              <div>
+                <h1 id="siteName">Northwind Store</h1>
+                <a class="site-url" id="siteUrl" href="https://northwindstore.com" target="_blank" rel="noopener">
+                  https://northwindstore.com
+                  <span data-icon="external"></span>
+                </a>
+              </div>
+            </div>
+
+            <p class="hero-summary" id="heroSummary"></p>
+
+            <div class="hero-meta" id="heroMeta"></div>
+
+            <div class="hero-actions">
+              <button class="btn light" type="button" data-print>
+                <span data-icon="printer"></span> Print / PDF
+              </button>
+              <button class="btn glass" id="copyBtn" type="button">
+                <span data-icon="copy"></span> Copy report link
+              </button>
+              <span class="verified">
+                <span data-icon="shield-check"></span>
+                <span id="verifiedLabel">Verified audit</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="hero-score">
+            <div class="gauge" id="gauge"></div>
+            <div class="score-meta">
+              <span class="pill warn" id="verdictPill">Needs improvement</span>
+              <span class="score-delta" id="scoreDelta">+6 points vs. last audit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-foot">
+          <div class="hero-stats" id="heroStats"></div>
+          <div class="trend">
+            <div class="trend-head">
+              <span>Score history</span>
+              <small id="trendLabel">7 audits</small>
+            </div>
+            <div class="trend-bars" id="trendBars"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CATEGORY SCORES ================= -->
+      <section class="section" id="breakdown">
+        <div class="section-head">
+          <div>
+            <span class="kicker">01 — Overview</span>
+            <h2>Category scores</h2>
+            <p id="breakdownSub">Weighted by commercial impact across 16 automated checks.</p>
+          </div>
+          <span class="head-note" id="breakdownNote">8 categories</span>
+        </div>
+        <div class="cat-grid" id="catGrid"></div>
+      </section>
+
+      <!-- ================= VITALS ================= -->
+      <section class="section" id="vitals">
+        <div class="section-head">
+          <div>
+            <span class="kicker">02 — Field data</span>
+            <h2>Core Web Vitals</h2>
+            <p id="vitalsSub">Real-user mobile data from the last 28 days.</p>
+          </div>
+          <span class="head-note" id="vitalsNote">5 metrics · 75th percentile</span>
+        </div>
+        <div class="vitals-grid" id="vitalsGrid"></div>
+        <p class="footnote">Thresholds follow Google's “good” targets. INP replaced FID as a Core Web Vital in March 2024.</p>
+      </section>
+
+      <!-- ================= ISSUES ================= -->
+      <section class="section" id="issues" data-section="issues">
+        <div class="section-head">
+          <div>
+            <span class="kicker">03 — Findings</span>
+            <h2>Issues &amp; recommendations</h2>
+            <p>Prioritised by impact, effort and affected revenue paths.</p>
+          </div>
+          <span class="head-note" id="issuesNote">16 checks · 4 critical</span>
+        </div>
+
+        <div class="issues-layout">
+          <div class="issues-main">
+            <div class="toolbar card">
+              <div class="search-field">
+                <span data-icon="search"></span>
+                <input type="search" id="issueSearch" placeholder="Search findings, categories, URLs…" aria-label="Search findings">
+              </div>
+              <div class="chips" id="sevChips" role="group" aria-label="Filter by severity">
+                <button class="chip is-active" type="button" data-filter="all">All <b id="chipAll">16</b></button>
+                <button class="chip" type="button" data-filter="critical">Critical <b id="chipCritical">4</b></button>
+                <button class="chip" type="button" data-filter="warning">Warnings <b id="chipWarning">8</b></button>
+                <button class="chip" type="button" data-filter="passed">Passed <b id="chipPassed">4</b></button>
+              </div>
+              <div class="toolbar-row">
+                <select id="catFilter" aria-label="Filter by category">
+                  <option value="all">All categories</option>
+                  <option value="technical">Technical SEO</option>
+                  <option value="onpage">On-Page SEO</option>
+                  <option value="content">Content</option>
+                  <option value="performance">Performance</option>
+                  <option value="mobile">Mobile</option>
+                  <option value="security">Security</option>
+                  <option value="accessibility">Accessibility</option>
+                  <option value="authority">Authority</option>
+                </select>
+                <button class="btn ghost small" id="expandAll" type="button" aria-expanded="false">
+                  <span data-icon="chevrons"></span> Expand all
+                </button>
+              </div>
+            </div>
+
+            <div class="issue-count" id="issueCount">Showing 16 of 16 findings</div>
+            <div id="issueList"></div>
+          </div>
+
+          <aside class="issues-side">
+            <div class="card summary-card">
+              <div class="summary-top">
+                <div class="donut" id="sevDonut">
+                  <div class="donut-hole"><strong>16</strong><span>checks</span></div>
+                </div>
+                <div>
+                  <h3>Priority snapshot</h3>
+                  <p id="summaryNote">4 critical findings are blocking the next score jump.</p>
+                </div>
+              </div>
+              <div class="legend" id="sevLegend"></div>
+              <div class="priority-head">Fix these first</div>
+              <ol class="priority-list" id="priorityList"></ol>
+              <button class="btn primary block" type="button" data-export>
+                <span data-icon="download"></span> Export findings (CSV)
+              </button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ================= PERFORMANCE ================= -->
+      <section class="section" id="performance" data-section="performance">
+        <div class="section-head">
+          <div>
+            <span class="kicker">04 — Speed</span>
+            <h2>Performance diagnostics</h2>
+            <p id="performanceSub">Lab data from a mobile emulation run on the product template.</p>
+          </div>
+          <span class="head-note" id="performanceNote">Lighthouse 68 · throttled 4G</span>
+        </div>
+
+        <div class="split">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Page load timeline</h3>
+                <p class="card-sub" id="timelineSub">Where the 2.2 s before interactivity goes.</p>
+              </div>
+              <span class="pill neutral">Mobile</span>
+            </div>
+            <div class="timeline" id="timeline"></div>
+            <div class="timeline-legend" id="timelineLegend"></div>
+            <div class="timeline-total">
+              <span>Time to interactive</span>
+              <strong id="timelineTotal">2.2 s</strong>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Optimisation opportunities</h3>
+                <p class="card-sub" id="oppsSub">Estimated savings on mobile.</p>
+              </div>
+              <span class="pill neutral" id="oppsPill">6 wins</span>
+            </div>
+            <div class="opps" id="opps"></div>
+            <div class="opps-total">
+              <span>Potential saving</span>
+              <strong id="oppsTotal">3.9 s</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ON-PAGE ================= -->
+      <section class="section" id="onpage" data-section="onpage">
+        <div class="section-head">
+          <div>
+            <span class="kicker">05 — Relevance</span>
+            <h2>On-page signals</h2>
+            <p>Titles, descriptions, headings and search appearance.</p>
+          </div>
+          <span class="head-note" id="onpageNote">248 pages crawled</span>
+        </div>
+
+        <div class="split even">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Search appearance</h3>
+                <p class="card-sub" id="serpSub">Product template · desktop</p>
+              </div>
+              <span class="pill good" id="serpPill">Rich result</span>
+            </div>
+            <div class="serp">
+              <div class="serp-top">
+                <span class="serp-favicon" id="serpFavicon">N</span>
+                <div>
+                  <div class="serp-site" id="serpSite">Northwind Store</div>
+                  <div class="serp-url" id="serpUrl">northwindstore.com › products › trailforge-65</div>
+                </div>
+              </div>
+              <div class="serp-title" id="serpTitle"></div>
+              <p class="serp-desc" id="serpDesc"></p>
+              <div class="serp-stars" aria-label="Rating 4.8 out of 5">
+                <span class="stars">★★★★★</span>
+                <span>4.8 · 312 reviews · In stock</span>
+              </div>
+            </div>
+            <p class="footnote" id="serpNote">Title 58 / 60 characters · Description 149 / 160 characters.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Heading outline</h3>
+                <p class="card-sub" id="headingsPath">/products/trailforge-65</p>
+              </div>
+              <span class="pill good" id="headingsPill">1 H1 · 5 H2</span>
+            </div>
+            <div class="outline" id="headings"></div>
+          </div>
+        </div>
+
+        <div class="card mt">
+          <div class="card-head">
+            <div>
+              <h3>Meta tag coverage</h3>
+              <p class="card-sub">Character counts against recommended limits.</p>
+            </div>
+            <span class="pill warn" id="metaPill">2 templates need work</span>
+          </div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead>
+                <tr><th>Template</th><th>Sample URL</th><th class="r">Title</th><th class="r">Description</th><th>Status</th></tr>
+              </thead>
+              <tbody id="metaBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card mt keywords-card">
+          <div class="card-head">
+            <div>
+              <h3>Priority keywords</h3>
+              <p class="card-sub">Organic position change over the last 30 days.</p>
+            </div>
+            <span class="pill neutral">Top 6 by volume</span>
+          </div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead>
+                <tr><th>Keyword</th><th class="r">Volume</th><th class="r">Position</th><th class="r">Change</th><th class="r">Clicks</th><th class="r">CTR</th></tr>
+              </thead>
+              <tbody id="keywordBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TECHNICAL ================= -->
+      <section class="section" id="technical" data-section="technical">
+        <div class="section-head">
+          <div>
+            <span class="kicker">06 — Foundations</span>
+            <h2>Technical &amp; crawl health</h2>
+            <p>Indexation, security headers and structured data.</p>
+          </div>
+          <span class="head-note" id="technicalNote">Search Console + crawl</span>
+        </div>
+
+        <div class="stat-grid" id="crawlStats"></div>
+
+        <div class="split even mt">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Security headers</h3>
+                <p class="card-sub" id="securitySub">Checked on 20 routes across both hosts.</p>
+              </div>
+              <span class="pill bad" id="securityPill">2 missing</span>
+            </div>
+            <div class="tbl-wrap">
+              <table class="tbl compact">
+                <thead><tr><th>Header</th><th>Value</th><th>Status</th></tr></thead>
+                <tbody id="securityBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Structured data coverage</h3>
+                <p class="card-sub" id="schemaSub">Share of eligible templates with valid markup.</p>
+              </div>
+              <span class="pill good" id="schemaPill">96% valid</span>
+            </div>
+            <div class="progress-list" id="schemaList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CONTENT ================= -->
+      <section class="section" id="content" data-section="content">
+        <div class="section-head">
+          <div>
+            <span class="kicker">07 — Content</span>
+            <h2>Content quality</h2>
+            <p>Depth, duplication and the landing pages that carry organic traffic.</p>
+          </div>
+          <span class="head-note" id="contentNote">684 avg. words / page</span>
+        </div>
+
+        <div class="stat-grid" id="contentStats"></div>
+
+        <div class="card mt pages-card">
+          <div class="card-head">
+            <div>
+              <h3>Top organic landing pages</h3>
+              <p class="card-sub">Clicks and average position over the last 28 days.</p>
+            </div>
+            <span class="pill neutral">Search Console</span>
+          </div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead>
+                <tr><th>Landing page</th><th class="r">Clicks</th><th class="r">Impressions</th><th class="r">CTR</th><th class="r">Avg. position</th><th>Page score</th></tr>
+              </thead>
+              <tbody id="pagesBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= AUTHORITY ================= -->
+      <section class="section" id="authority" data-section="authority">
+        <div class="section-head">
+          <div>
+            <span class="kicker">08 — Trust</span>
+            <h2>Links &amp; authority</h2>
+            <p>Backlink profile and share of voice against three closest rivals.</p>
+          </div>
+          <span class="head-note">Authority score 62</span>
+        </div>
+
+        <div class="stat-grid" id="authorityStats"></div>
+
+        <div class="card mt">
+          <div class="card-head">
+            <div>
+              <h3>Competitor benchmark</h3>
+              <p class="card-sub">Estimated monthly organic performance.</p>
+            </div>
+            <span class="pill neutral">4 domains</span>
+          </div>
+          <div class="tbl-wrap">
+            <table class="tbl">
+              <thead>
+                <tr><th>Domain</th><th>Authority</th><th class="r">Referring domains</th><th class="r">Backlinks</th><th class="r">Keywords</th><th class="r">Traffic</th></tr>
+              </thead>
+              <tbody id="competitorBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ROADMAP ================= -->
+      <section class="section" id="roadmap" data-section="roadmap">
+        <div class="section-head">
+          <div>
+            <span class="kicker">09 — Plan</span>
+            <h2>Action roadmap</h2>
+            <p>Sequenced by score impact, effort and dependencies.</p>
+          </div>
+          <span class="head-note">90-day plan</span>
+        </div>
+
+        <div class="roadmap" id="roadmapGrid"></div>
+
+        <div class="signoff card">
+          <div class="signoff-id">
+            <span class="avatar">BP</span>
+            <div>
+              <strong id="auditorName">Big Pickle</strong>
+              <span id="auditorRole">Lead SEO Consultant</span>
+            </div>
+          </div>
+          <div class="signoff-meta">
+            <div><span>Report ID</span><b id="signReportId">SEO-2026-1024-07</b></div>
+            <div><span>Issued</span><b id="signDate">24 Oct 2026</b></div>
+            <div><span>Valid until</span><b>24 Jan 2027</b></div>
+          </div>
+          <button class="btn primary" id="approveBtn" type="button">
+            <span data-icon="check"></span> Approve &amp; share
+          </button>
+        </div>
+
+        <p class="method">
+          <strong>Methodology.</strong> <span id="methodBody">248 pages crawled with a desktop and mobile user agent, combined with Search Console field data, Lighthouse lab runs and a manual review of the top 20 revenue templates. Scores are weighted by business impact, not by the raw number of issues.</span>
+        </p>
+      </section>
+
+      <footer class="page-foot">
+        <span>FinalAudit · SEO &amp; website audit</span>
+        <span id="footSite">Prepared for Northwind Store</span>
+        <a href="#overview">Back to top <span data-icon="arrow-up"></span></a>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<div class="audit-overlay" id="auditOverlay" hidden>
+  <div class="audit-modal" role="dialog" aria-modal="true" aria-labelledby="auditOverlayTitle">
+    <div class="audit-spinner" aria-hidden="true"><span></span></div>
+    <span class="kicker">Live crawl</span>
+    <h2 id="auditOverlayTitle">Auditing website</h2>
+    <p class="audit-url" id="auditOverlayUrl"></p>
+    <p class="audit-stage" id="auditStage">Preparing request…</p>
+    <div class="audit-progress"><span id="auditProgress"></span></div>
+    <button class="btn ghost small" id="auditCancel" type="button">Cancel audit</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">
+  <span data-icon="arrow-up"></span>
+</button>
+
+<script src="js/data.js"></script>
+<script src="js/audit-engine.js"></script>
+<script src="js/app.js"></script>
+<script src="js/audit-ui.js"></script>
+</body>
+</html>
