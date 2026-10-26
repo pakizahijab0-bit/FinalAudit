@@ -111,7 +111,7 @@
 
     document.title = m.live
       ? m.siteName + " — Live SEO Audit | FinalAudit"
-      : "SEO & Website Audit — " + m.siteName + " | FinalAudit";
+      : "FinalAudit — Live SEO & Website Audit";
 
     $("#siteName").textContent = m.siteName;
     $("#siteAvatar").textContent = m.favicon;

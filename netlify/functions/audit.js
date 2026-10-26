@@ -235,7 +235,7 @@ exports.handler = async (event) => {
   } catch (err) {
     let message = "Could not fetch the page. Check the URL and try again.";
     if (err && err.name === "TimeoutError") {
-      message = "The page took too long to respond (15 second limit).";
+      message = "The page took too long to respond. Try again or audit a faster URL.";
     } else if (err && /private|local|redirect|unsupported|resolve/i.test(err.message || "")) {
       message = "The page redirected to a blocked or invalid address.";
     }
