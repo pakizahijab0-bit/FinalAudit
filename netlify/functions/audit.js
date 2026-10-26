@@ -11,8 +11,10 @@ const dns = require("node:dns").promises;
 const net = require("node:net");
 
 const MAX_BYTES = 2 * 1024 * 1024;
-const FETCH_TIMEOUT_MS = 15000;
-const ROBOTS_TIMEOUT_MS = 5000;
+// Netlify's synchronous function limit is 10s on the free plan. Keep the
+// page fetch and the optional robots.txt fetch inside that budget.
+const FETCH_TIMEOUT_MS = 7000;
+const ROBOTS_TIMEOUT_MS = 2000;
 const MAX_REDIRECTS = 4;
 
 const PRIVATE_V4 = [

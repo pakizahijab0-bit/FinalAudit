@@ -370,7 +370,9 @@
     if (hole) hole.textContent = total;
 
     $("#summaryNote").textContent = critical.length
-      ? critical.length + " critical findings are blocking the next score jump."
+      ? critical.length === 1
+        ? "1 critical finding is blocking the next score jump."
+        : critical.length + " critical findings are blocking the next score jump."
       : "No critical findings. Focus on the warnings to keep momentum.";
 
     $("#sevLegend").innerHTML = [
